@@ -1,8 +1,9 @@
 import "./db/connection.js"
 import express from "express"
 import cors from "cors"
-import {Pinpoint} from "./db/models/pinpoints.js"
-import {TopologyData} from "./db/models/topology.js"
+import { Pinpoint } from "./db/models/pinpoints.js"
+import { TopologyData } from "./db/models/topology.js"
+import { TrailRouter } from "./routes/trail-router.js"
 
 const app = express();
 
@@ -126,6 +127,8 @@ app.get('/api/pinpoints/:id', async (req, res) => {
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+app.use("/trail", TrailRouter)
 
 // Start server
 const PORT = process.env.PORT || 3000;
