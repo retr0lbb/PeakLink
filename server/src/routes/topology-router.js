@@ -29,4 +29,25 @@ topologyRouter.post("/", async (req, res) => {
     return res.status(201).json({message: "Topology data Retrieved With success"})
 })
 
+topologyRouter.post('/batch', async (req, res) => {
+  try {
+    const { points } = req.body;
+    const docs = points.map(p => ({
+      trailId: p.trailId,
+      coordinates: { latitude: p.latitude, longitude: p.longitude, altitude: p.altitude },
+      environment: { temperature: p.temperature, pressure: p.pressure, humidity: p.humidity },
+      motion: { heading: p.heading, speed: p.speed, verticalSpeed: p.verticalSpeed },
+      terrain: { slope: p.slope, surfaceType: p.surfaceType },
+      deviceId: p.deviceId,
+      accuracy: p.accuracy,
+      timestamp: p.timestamp || new Date()
+    }));
+
+    const result = await TopologyData.insertMany(docs);
+    res.status(201).json({ success: true, count: result.length });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
+
 export { topologyRouter }
