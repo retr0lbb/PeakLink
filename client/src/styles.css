@@ -128,6 +128,10 @@ code {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+.leaflet-default-icon-path {
+  background-image: url(https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
