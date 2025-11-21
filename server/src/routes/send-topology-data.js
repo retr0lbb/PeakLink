@@ -1,6 +1,6 @@
 import expres from "express"
-import {TopologyData} from "../db/models/topology"
-import { Trail } from "../db/models/trail";
+import {TopologyData} from "../db/models/topology.js"
+import { Trail } from "../db/models/trail.js";
 
 const topologyRouter = expres.Router()
 

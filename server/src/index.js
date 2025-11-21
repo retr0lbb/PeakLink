@@ -4,6 +4,7 @@ import cors from "cors"
 import { Pinpoint } from "./db/models/pinpoints.js"
 import { TopologyData } from "./db/models/topology.js"
 import { TrailRouter } from "./routes/trail-router.js"
+import { topologyRouter } from "./routes/send-topology-data.js"
 
 const app = express();
 
@@ -129,6 +130,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use("/trail", TrailRouter)
+app.use("/topology", topologyRouter)
 
 // Start server
 const PORT = process.env.PORT || 3000;

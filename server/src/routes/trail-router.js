@@ -1,6 +1,7 @@
 import express from "express"
 import { Trail } from "../db/models/trail.js";
 import {randomUUID} from "node:crypto"
+import { calculateSumOfStats } from "../utils/sum-of-stats.js";
 const TrailRouter = express.Router()
 
 TrailRouter.post("/", async(req, res) => {
@@ -64,16 +65,9 @@ TrailRouter.post("/:id/close", async (req, res) => {
       return res.status(404).json({ message: "Trail not found" });
     }
 
-    const { distance, duration, altitudeGain, altitudeLoss, avgSpeed } = req.body;
+    const stats = await calculateSumOfStats(trail._id)
 
-    trail.stats = {
-      distance,
-      duration,
-      altitudeGain,
-      altitudeLoss,
-      avgSpeed
-    };
-
+    trail.stats = stats
     trail.status = "closed";
     trail.endedAt = new Date();
 
