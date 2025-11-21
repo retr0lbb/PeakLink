@@ -44,8 +44,8 @@ export default function HikingMap({ className = "" }: HikingMapProps) {
     <div className={`relative w-full h-full ${className}`}>
       <MapContainer
         center={[center.lat, center.lng]}
-        zoom={13}
-        scrollWheelZoom={true}
+        zoom={15}
+        scrollWheelZoom={false}
         className="w-full h-full"
         zoomControl={false}
       >
