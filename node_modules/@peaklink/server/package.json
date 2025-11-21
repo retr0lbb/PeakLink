@@ -1,0 +1,19 @@
+{
+  "name": "@peaklink/server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "dev": "node --watch --env-file=.env ."
+  },
+  "keywords": [],
+  "author": "retr0lbb",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.20.1"
+  }
+}
