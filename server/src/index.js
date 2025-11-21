@@ -9,7 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
@@ -17,7 +16,6 @@ app.get('/health', (req, res) => {
 app.use("/trail", TrailRouter)
 app.use("/topology", topologyRouter)
 
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🏔️  Hiking API rodando na porta ${PORT}`);
